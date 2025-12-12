@@ -1,12 +1,32 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Header from "@/components/Header";
+import SearchSection from "@/components/SearchSection";
+import InfoCards from "@/components/InfoCards";
+import CategoryGrid from "@/components/CategoryGrid";
+import TrendingSection from "@/components/TrendingSection";
+import CategorySidebar from "@/components/CategorySidebar";
+import BottomNav from "@/components/BottomNav";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
+      <Header />
+      <SearchSection />
+      
+      <main className="lg:container lg:px-4 lg:py-6">
+        <div className="lg:flex lg:gap-6">
+          {/* Sidebar - Desktop only */}
+          <CategorySidebar />
+          
+          {/* Main Content */}
+          <div className="flex-1">
+            <InfoCards />
+            <CategoryGrid />
+            <TrendingSection />
+          </div>
+        </div>
+      </main>
+
+      <BottomNav />
     </div>
   );
 };
