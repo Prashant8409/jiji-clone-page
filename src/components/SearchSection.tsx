@@ -1,8 +1,36 @@
-import { Search, ChevronDown, MapPin } from "lucide-react";
+import { Search, MapPin } from "lucide-react";
 import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const tanzanianLocations = [
+  { value: "all", label: "All Tanzania" },
+  { value: "dar-es-salaam", label: "Dar es Salaam" },
+  { value: "arusha", label: "Arusha" },
+  { value: "mwanza", label: "Mwanza" },
+  { value: "dodoma", label: "Dodoma" },
+  { value: "zanzibar", label: "Zanzibar" },
+  { value: "mbeya", label: "Mbeya" },
+  { value: "morogoro", label: "Morogoro" },
+  { value: "tanga", label: "Tanga" },
+  { value: "kilimanjaro", label: "Kilimanjaro" },
+  { value: "iringa", label: "Iringa" },
+  { value: "kigoma", label: "Kigoma" },
+  { value: "mtwara", label: "Mtwara" },
+  { value: "tabora", label: "Tabora" },
+  { value: "geita", label: "Geita" },
+  { value: "shinyanga", label: "Shinyanga" },
+  { value: "kagera", label: "Kagera" },
+  { value: "pwani", label: "Pwani" },
+];
 
 const SearchSection = () => {
-  const [location, setLocation] = useState("All Tanzania");
+  const [location, setLocation] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
@@ -14,13 +42,19 @@ const SearchSection = () => {
         
         <div className="flex flex-col sm:flex-row gap-2">
           {/* Location Dropdown */}
-          <button className="flex items-center gap-2 bg-card rounded-lg px-4 py-3 min-w-[140px] hover:bg-card/90 transition-colors">
-            <MapPin className="w-4 h-4 text-muted-foreground" />
-            <span className="text-foreground text-sm font-medium truncate flex-1 text-left">
-              {location}
-            </span>
-            <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-          </button>
+          <Select value={location} onValueChange={setLocation}>
+            <SelectTrigger className="flex items-center gap-2 bg-card border-0 rounded-lg px-4 py-3 min-w-[160px] h-auto hover:bg-card/90 transition-colors">
+              <MapPin className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+              <SelectValue placeholder="Select location" />
+            </SelectTrigger>
+            <SelectContent className="bg-card border-border z-50">
+              {tanzanianLocations.map((loc) => (
+                <SelectItem key={loc.value} value={loc.value}>
+                  {loc.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
           {/* Search Input */}
           <div className="flex-1 relative">
